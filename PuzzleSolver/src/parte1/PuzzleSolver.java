@@ -13,5 +13,6 @@ public class PuzzleSolver {
         //Path outputPath = Paths.get(outputFile);
         
         Reader read = new Reader(puzzle, inputPath);
+        System.out.println(puzzle.size());
     }
 }

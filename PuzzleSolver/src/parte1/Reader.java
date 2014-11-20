@@ -25,8 +25,7 @@ public class Reader {
         }
     }
     public void parseLine(String line) {
-        String[] values;
-        values = line.split("\t");
+        String[] values = line.split("\t",6);
         Piece x = new Piece(values[0],values[1].charAt(0),values[2],values[3],values[4],values[5]);
         puzzle.addPiece(x);
     }
