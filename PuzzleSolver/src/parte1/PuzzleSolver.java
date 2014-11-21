@@ -14,5 +14,6 @@ public class PuzzleSolver {
         
         Reader read = new Reader(puzzle, inputPath);
         System.out.println(puzzle.size());
+        System.out.println(read.getFirst().getData());
     }
 }
