@@ -15,6 +15,14 @@ public class Piece implements Comparable<Piece> {
         id_s = s;
         id_w = w;
     }
+    Piece(String i) {
+        id = i;
+        data = '\0';
+        id_n = null;
+        id_e = null;
+        id_s = null;
+        id_w = null;
+    }
     public String getId() {
         return id;
     }

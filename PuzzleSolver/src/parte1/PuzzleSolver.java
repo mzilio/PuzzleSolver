@@ -2,6 +2,7 @@ package parte1;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+//import java.util.LinkedList;
 
 public class PuzzleSolver {
     public static void main(String[] args) {
@@ -13,7 +14,7 @@ public class PuzzleSolver {
         //Path outputPath = Paths.get(outputFile);
         
         Reader read = new Reader(puzzle, inputPath);
-        System.out.println(puzzle.size());
-        System.out.println(read.getFirst().getData());
+        puzzle.solve(read.getFirst());
+        System.out.println(puzzle.numberOfRow() + " " + puzzle.numberOfCol());
     }
 }

@@ -31,9 +31,7 @@ public class Reader {
         if(values[2].isEmpty() && values[5].isEmpty()) {
             first = x;
         }
-        else {
-            puzzle.addPiece(x);
-        }
+        puzzle.addPiece(x);
     }
     public Piece getFirst() {
         return first;
