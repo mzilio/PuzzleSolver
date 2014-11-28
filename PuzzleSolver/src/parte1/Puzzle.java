@@ -1,17 +1,19 @@
 package parte1;
 
 import java.util.TreeSet;
-import java.util.LinkedList;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Puzzle {
     private final TreeSet<Piece> pieces;
-    private final LinkedList<Piece> solution;
+    private final List<Piece> solution;
     private int rowNum;
     private boolean solved;
     //private int colNum;
     Puzzle() {
         pieces = new TreeSet();
-        solution = new LinkedList();
+        solution = new ArrayList();
         rowNum = 0;
         solved = false;
         //colNum = 0;
@@ -31,7 +33,7 @@ public class Puzzle {
     public boolean isSolved() {
         return solved;
     }
-    public LinkedList<Piece> getSolution() {
+    public List<Piece> getSolution() {
         return solution;
     }
     public void solve(Piece first) {
@@ -47,8 +49,8 @@ public class Puzzle {
         }
         solved = true;
     }
-    public LinkedList<Piece> solveRow(Piece first) {
-        LinkedList<Piece> row = new LinkedList();
+    public List<Piece> solveRow(Piece first) {
+        List<Piece> row = new ArrayList();
         row.add(first);
         //colNum++;
         String nextRowId = first.getIdE();
@@ -60,5 +62,11 @@ public class Puzzle {
             nextRowId = nextPiece.getIdE();
         }
         return row;
+    }
+    public void view() {
+        Iterator<Piece> it = solution.iterator();
+        while(it.hasNext()) {
+            System.out.print(it.next().getData());
+        }
     }
 }
