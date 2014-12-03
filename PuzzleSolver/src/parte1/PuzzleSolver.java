@@ -2,7 +2,6 @@ package parte1;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-//import java.util.LinkedList;
 
 public class PuzzleSolver {
     public static void main(String[] args) {

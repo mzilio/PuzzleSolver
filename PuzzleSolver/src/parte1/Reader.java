@@ -15,7 +15,7 @@ public class Reader {
         puzzle = p;
         readFile(inputPath);
     }
-    private final void readFile(Path inputPath) {
+    private void readFile(Path inputPath) {
         try (BufferedReader reader = Files.newBufferedReader(inputPath, charset)) {
             String line = null;
             while ((line = reader.readLine()) != null) {
