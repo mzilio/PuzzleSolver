@@ -3,20 +3,17 @@ package parte1;
 import java.util.TreeSet;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class Puzzle {
     private final TreeSet<Piece> pieces;
     private final List<Piece> solution;
     private int rowNum;
     private boolean solved;
-    //private int colNum;
     Puzzle() {
         pieces = new TreeSet();
         solution = new ArrayList();
         rowNum = 0;
         solved = false;
-        //colNum = 0;
     }
     public boolean addPiece(Piece x) {
         return pieces.add(x);
@@ -40,7 +37,7 @@ public class Puzzle {
         solution.addAll(solveRow(first));
         rowNum++;
         String nextColId = first.getIdS();
-        while(!nextColId.isEmpty()) {
+        while(nextColId.compareTo("VUOTO")!=0) {
             Piece next = new Piece(nextColId);
             Piece nextRow = pieces.floor(next);
             solution.addAll(solveRow(nextRow));
@@ -54,7 +51,7 @@ public class Puzzle {
         row.add(first);
         //colNum++;
         String nextRowId = first.getIdE();
-        while(!nextRowId.isEmpty()) {
+        while(nextRowId.compareTo("VUOTO")!=0) {
             Piece next = new Piece(nextRowId);
             Piece nextPiece = pieces.floor(next);
             row.add(nextPiece);
@@ -62,11 +59,5 @@ public class Puzzle {
             nextRowId = nextPiece.getIdE();
         }
         return row;
-    }
-    public void view() {
-        Iterator<Piece> it = solution.iterator();
-        while(it.hasNext()) {
-            System.out.print(it.next().getData());
-        }
     }
 }
