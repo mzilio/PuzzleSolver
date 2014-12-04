@@ -46,16 +46,14 @@ public class Puzzle {
         }
         solved = true;
     }
-    public List<Piece> solveRow(Piece first) {
+    private List<Piece> solveRow(Piece first) {
         List<Piece> row = new ArrayList();
         row.add(first);
-        //colNum++;
         String nextRowId = first.getIdE();
         while(nextRowId.compareTo("VUOTO")!=0) {
             Piece next = new Piece(nextRowId);
             Piece nextPiece = pieces.floor(next);
             row.add(nextPiece);
-            //colNum++;
             nextRowId = nextPiece.getIdE();
         }
         return row;
