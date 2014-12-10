@@ -9,7 +9,6 @@ import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Iterator;
 
-
 public class Writer {
     private final Puzzle puzzle;
     private static final Charset charset = StandardCharsets.UTF_8;
@@ -17,7 +16,7 @@ public class Writer {
         puzzle = p;
         writeFile(outputPath);
     }
-    private final void writeFile(Path outputPath) {
+    private void writeFile(Path outputPath) {
         try (BufferedWriter writer = Files.newBufferedWriter(outputPath, charset)) {
             if(puzzle.isSolved()) {
                 List<Piece> list = puzzle.getSolution();
@@ -43,7 +42,9 @@ public class Writer {
             }
         }
         catch (IOException e) {
-            System.err.println(e);
+            System.err.println("Problemi con la scrittura del file di output (" + e + ")");
+            System.err.println("Il programma verrà terminato!");
+            System.exit(1);
         }
     }
 }
