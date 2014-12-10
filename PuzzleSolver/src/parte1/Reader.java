@@ -35,7 +35,6 @@ public class Reader {
         String[] values = line.split("\t",6);
         for(String value : values) {
             value = value.trim();
-            System.out.print(value);
         }
         Piece x = new Piece(values[0],values[1].charAt(0),values[2],values[3],values[4],values[5]);
         if(values[2].compareTo("VUOTO")==0 && values[5].compareTo("VUOTO")==0) {
