@@ -10,8 +10,8 @@ public class Puzzle {
     private int rowNum;
     private boolean solved;
     Puzzle() {
-        pieces = new TreeSet();
-        solution = new ArrayList();
+        pieces = new TreeSet<>();
+        solution = new ArrayList<>();
         rowNum = 0;
         solved = false;
     }
@@ -47,7 +47,7 @@ public class Puzzle {
         solved = true;
     }
     private List<Piece> solveRow(Piece first) {
-        List<Piece> row = new ArrayList();
+        List<Piece> row = new ArrayList<>();
         row.add(first);
         String nextRowId = first.getIdE();
         while(nextRowId.compareTo("VUOTO")!=0) {
