@@ -8,15 +8,17 @@ public class Puzzle {
     private final TreeSet<Piece> pieces;
     private final List<Piece> solution;
     private int rowNum;
-    private boolean solved;
+    private int rowSolved;
     Puzzle() {
         pieces = new TreeSet<>();
         solution = new ArrayList<>();
         rowNum = 0;
-        solved = false;
     }
     public boolean addPiece(Piece x) {
         return pieces.add(x);
+    }
+    public Piece find(Piece x) {
+        return pieces.floor(x);
     }
     public int size(){
         return pieces.size();
@@ -28,34 +30,33 @@ public class Puzzle {
         return size()/rowNum;
     }
     public boolean isSolved() {
-        return solved;
+        return (rowNum-rowSolved) == 0;
+    }
+    public void newRowSolved() {
+        rowSolved++;
     }
     public List<Piece> getSolution() {
         return solution;
     }
-    public void solve(Piece first) {
-        solution.addAll(solveRow(first));
+    public void addRowSolved(List<Piece> row) {
+        solution.addAll(row);
+    }
+    public void solve(Piece first) throws InterruptedException {
+        RowSolver r = new RowSolver(this, first);
+        r.start();
         rowNum++;
         String nextColId = first.getIdS();
         while(nextColId.compareTo("VUOTO")!=0) {
             Piece next = new Piece(nextColId);
             Piece nextRow = pieces.floor(next);
-            solution.addAll(solveRow(nextRow));
+            r = new RowSolver(this, nextRow);
+            r.start();
             rowNum++;
             nextColId = nextRow.getIdS();
         }
-        solved = true;
-    }
-    private List<Piece> solveRow(Piece first) {
-        List<Piece> row = new ArrayList<>();
-        row.add(first);
-        String nextRowId = first.getIdE();
-        while(nextRowId.compareTo("VUOTO")!=0) {
-            Piece next = new Piece(nextRowId);
-            Piece nextPiece = pieces.floor(next);
-            row.add(nextPiece);
-            nextRowId = nextPiece.getIdE();
+        synchronized(this) {
+            while(!isSolved())
+                wait();
         }
-        return row;
     }
 }
