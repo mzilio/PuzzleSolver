@@ -18,7 +18,11 @@ public class PuzzleSolver {
         Path inputPath = Paths.get(inputFile);
         Path outputPath = Paths.get(outputFile);
         Reader read = new Reader(puzzle, inputPath);
-        puzzle.solve(read.getFirst());
+        try {
+            puzzle.solve(read.getFirst());
+        } catch (InterruptedException e) {
+            
+        }
         Writer write = new Writer(puzzle, outputPath);
     }
 }
