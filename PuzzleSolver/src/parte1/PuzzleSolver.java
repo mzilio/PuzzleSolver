@@ -5,7 +5,7 @@ import java.nio.file.Paths;
 
 public class PuzzleSolver {
     public static void main(String[] args) {
-        String inputFile = null, outputFile = null;
+        String inputFile = new String(), outputFile = new String();
         try {
             inputFile = args[0];
             outputFile = args[1];
@@ -21,7 +21,9 @@ public class PuzzleSolver {
         try {
             puzzle.solve(read.getFirst());
         } catch (InterruptedException e) {
-            
+            System.err.println("Problemi con i thread (" + e + ")");
+            System.err.println("Il programma verrà terminato!");
+            System.exit(1);
         }
         Writer write = new Writer(puzzle, outputPath);
     }
