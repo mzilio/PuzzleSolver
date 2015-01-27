@@ -1,4 +1,4 @@
-package parte1;
+package client;
 
 import java.io.IOException;
 import java.io.BufferedReader;
@@ -6,12 +6,13 @@ import java.nio.file.Path;
 import java.nio.file.Files;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.rmi.RemoteException;
 
 public class Reader {
-    private final Puzzle puzzle;
+    private final IPuzzle puzzle;
     private Piece first;
     private static final Charset charset = StandardCharsets.UTF_8;
-    Reader(Puzzle p, Path inputPath) {
+    Reader(IPuzzle p, Path inputPath) {
         puzzle = p;
         readFile(inputPath);
     }
@@ -31,7 +32,7 @@ public class Reader {
             System.exit(1);
         }
     }
-    private void parseLine(String line) {
+    private void parseLine(String line) throws RemoteException {
         String[] values = line.split("\t",6);
         for(String value : values) {
             value = value.trim();

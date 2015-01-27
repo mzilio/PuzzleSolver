@@ -1,4 +1,4 @@
-package parte1;
+package server;
 
 import java.util.TreeSet;
 import java.util.Map;

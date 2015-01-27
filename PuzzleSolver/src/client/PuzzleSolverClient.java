@@ -1,10 +1,11 @@
-package parte1;
+package client;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.rmi.Naming;
 
-public class PuzzleSolver {
-    public static void main(String[] args) {
+public class PuzzleSolverClient {
+    public static void main(String[] args) throws Exception {
         String inputFile = new String(), outputFile = new String();
         try {
             inputFile = args[0];
@@ -14,7 +15,7 @@ public class PuzzleSolver {
             System.err.println("Il programma verrà terminato!");
             System.exit(1);
         }
-        Puzzle puzzle = new Puzzle();
+        IPuzzle puzzle = (IPuzzle) Naming.lookup(args[2]);
         Path inputPath = Paths.get(inputFile);
         Path outputPath = Paths.get(outputFile);
         Reader read = new Reader(puzzle, inputPath);

@@ -1,4 +1,4 @@
-package parte1;
+package server;
 
 public class RowSolver extends Thread {
     private final Puzzle puzzle;

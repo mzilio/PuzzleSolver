@@ -1,4 +1,4 @@
-package parte1;
+package client;
 
 import java.io.IOException;
 import java.io.BufferedWriter;
@@ -8,9 +8,9 @@ import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 
 public class Writer {
-    private final Puzzle puzzle;
+    private final IPuzzle puzzle;
     private static final Charset charset = StandardCharsets.UTF_8;
-    Writer(Puzzle p, Path outputPath) {
+    Writer(IPuzzle p, Path outputPath) {
         puzzle = p;
         writeFile(outputPath);
     }

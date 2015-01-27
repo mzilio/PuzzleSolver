@@ -1,6 +1,8 @@
-package parte1;
+package server;
 
-public class Piece implements Comparable<Piece> {
+import java.io.Serializable;
+
+public class Piece implements Comparable<Piece>, Serializable {
     private final String id;
     private final char data;
     private final String id_n;
