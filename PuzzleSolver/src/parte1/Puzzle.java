@@ -3,17 +3,20 @@ package parte1;
 import java.util.TreeSet;
 import java.util.Map;
 import java.util.HashMap;
+import java.rmi.server.UnicastRemoteObject;
+import java.rmi.RemoteException;
 
-public class Puzzle {
+public class Puzzle extends UnicastRemoteObject implements IPuzzle {
     private final TreeSet<Piece> pieces;
     private final Map<Integer, String> solution;
     private int rowNum;
     private int rowSolved;
-    Puzzle() {
+    Puzzle() throws RemoteException {
         pieces = new TreeSet<>();
         solution = new HashMap<>();
         rowNum = 0;
     }
+    @Override
     public boolean addPiece(Piece x) {
         return pieces.add(x);
     }
@@ -23,9 +26,11 @@ public class Puzzle {
     public int size(){
         return pieces.size();
     }
+    @Override
     public int numberOfRow() {
         return rowNum;
     }
+    @Override
     public int numberOfCol() {
         return size()/rowNum;
     }
@@ -38,6 +43,7 @@ public class Puzzle {
     public void addRowSolved(int pos, String row) {
         solution.put(pos, row);
     }
+    @Override
     public String getSolution() {
         String sol = new String();
         for(int i=0; i<rowNum; i++) {
@@ -45,11 +51,13 @@ public class Puzzle {
         }
         return sol;
     }
+    @Override
     public String getSingleRow(int pos) {
         String sol = new String();
         sol = sol + solution.get(pos);
         return sol;
     }
+    @Override
     public void solve(Piece first) throws InterruptedException {
         new RowSolver(this, first, rowNum).start();
         rowNum++;
