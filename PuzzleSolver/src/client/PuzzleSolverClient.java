@@ -14,7 +14,7 @@ public class PuzzleSolverClient {
             inputFile = args[0];
             outputFile = args[1];
         } catch (ArrayIndexOutOfBoundsException e) {
-            System.err.println("Non sono stati forniti i nomi dei file di I/O (" + e + ")");
+            System.err.println("Non sono stati forniti i nomi dei file di I/O");
             System.err.println("Il programma verrà terminato!");
             System.exit(1);
         }
@@ -26,13 +26,13 @@ public class PuzzleSolverClient {
             try {
                 puzzle.solve(read.getFirst());
             } catch (InterruptedException e) {
-                System.err.println("Problemi con i thread (" + e + ")");
+                System.err.println("Problemi con i thread");
                 System.err.println("Il programma verrà terminato!");
                 System.exit(1);
             }
             Writer write = new Writer(puzzle, outputPath);
         } catch(NotBoundException | MalformedURLException | RemoteException e) {
-            System.err.println("Problemi con la connessione al server (" + e + ")");
+            System.err.println("Problemi con la connessione al server");
             System.err.println("Il programma verrà terminato!");
             System.exit(1);
         }

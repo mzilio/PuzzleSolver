@@ -12,22 +12,24 @@ public class Reader {
     private final IPuzzle puzzle;
     private Piece first;
     private static final Charset charset = StandardCharsets.UTF_8;
-    Reader(IPuzzle p, Path inputPath) {
+    Reader(IPuzzle p, Path inputPath) throws RemoteException {
         puzzle = p;
         readFile(inputPath);
     }
-    private void readFile(Path inputPath) {
+    private void readFile(Path inputPath) throws RemoteException {
         try (BufferedReader reader = Files.newBufferedReader(inputPath, charset)) {
             String line;
             while ((line = reader.readLine()) != null) {
                 parseLine(line);
             }
         } catch (IOException e) {
-            System.err.println("Problemi con la lettura del file di input (" + e + ")");
+            if(e instanceof RemoteException)
+                throw new RemoteException();
+            System.err.println("Problemi con la lettura del file di input");
             System.err.println("Il programma verrà terminato!");
             System.exit(1);
         } catch (ArrayIndexOutOfBoundsException e) {
-            System.err.println("Il file di input non è formattato correttamente (" + e + ")");
+            System.err.println("Il file di input non è formattato correttamente");
             System.err.println("Il programma verrà terminato!");
             System.exit(1);
         }

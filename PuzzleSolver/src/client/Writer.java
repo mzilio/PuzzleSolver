@@ -30,7 +30,7 @@ public class Writer {
         catch (IOException e) {
             if(e instanceof RemoteException)
                 throw new RemoteException();
-            System.err.println("Problemi con la scrittura del file di output (" + e + ")");
+            System.err.println("Problemi con la scrittura del file di output");
             System.err.println("Il programma verrà terminato!");
             System.exit(1);
         }
